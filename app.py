@@ -29,10 +29,10 @@ def get_stresses(word=None):
 
 @app.route('/rhymes/with/<word_1>/<word_2>/', methods=['GET'])
 def rhymes_with(word_1=None, word_2=None):
-    return str(word_1 is not None and word_2 is not None and word_1 in app.config['W'] and word_2 in app.config['D']['rhymes'][app.config['W'][word_1]])
+    return str(word_1 is not None and word_2 is not None and word_1 in app.config['W'] and word_2 in list(app.config['D']['list'][x] for x in app.config['D']['rhymes'][str(app.config['W'][word_1])]))
 
 @app.route('/rhymes/<word>', methods=['GET'])
 def get_rhymes(word=None):
-    return '' if word is None or word not in app.config['W'] else '\n'.join(sorted((app.config['W'][x] for x in app.config['D']['rhymes'][app.config['W'][word]]), key=lambda x:app.config['D']['words'][x][0]['c']))
+    return '' if word is None or word not in app.config['W'] else '\n'.join(sorted((app.config['D']['list'][x] for x in app.config['D']['rhymes'][str(app.config['W'][word])]), key=lambda x:app.config['D']['words'][app.config['W'][x]][0]['c']))
 
 app.run()
