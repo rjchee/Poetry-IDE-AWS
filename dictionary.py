@@ -43,6 +43,6 @@ output['rhymes'] = {k: list(v) for k, v in rhymes.items()}
 """
 import pprint
 pp = pprint.PrettyPrinter()
-pp.pprint(output)
+pp.pprint({output['list'][i]: output['rhymes'][i] for i in range(100, 200)})
 #"""
 json.dump(output, open('dictionary.json', 'w'))
