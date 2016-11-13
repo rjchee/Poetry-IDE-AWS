@@ -35,4 +35,5 @@ def rhymes_with(word_1=None, word_2=None):
 def get_rhymes(word=None):
     return '' if word is None or word not in app.config['W'] else '\n'.join(sorted((app.config['D']['list'][x] for x in app.config['D']['rhymes'][str(app.config['W'][word])]), key=lambda x:app.config['D']['words'][app.config['W'][x]][0]['c']))
 
-app.run()
+if __name__ == '__main__':
+	app.run()
